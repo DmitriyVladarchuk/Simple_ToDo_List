@@ -5,4 +5,6 @@
     <string name="setting">Настройки</string>
     <string name="profile">Профиль</string>
     <string name="my_tasks">Мои задачи</string>
+    
+    <string name="write_task">Напишите задачу</string>
 </resources>

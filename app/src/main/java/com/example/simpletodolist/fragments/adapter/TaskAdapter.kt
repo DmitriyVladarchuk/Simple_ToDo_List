@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.simpletodolist.R
 import com.example.simpletodolist.models.Task
 
-class TaskAdapter: RecyclerView.Adapter<TaskAdapter.TaskItemViewHolder>() {
+class TaskAdapter(val click: Click): RecyclerView.Adapter<TaskAdapter.TaskItemViewHolder>() {
 
     var data = listOf<Task>()
         set(value) {
@@ -27,6 +27,9 @@ class TaskAdapter: RecyclerView.Adapter<TaskAdapter.TaskItemViewHolder>() {
     override fun onBindViewHolder(holder: TaskItemViewHolder, position: Int) {
         val item = data[position]
         holder.bind(item)
+        holder.taskDone.setOnClickListener {
+            click.clickItem(position)
+        }
     }
 
     class TaskItemViewHolder(rootView: ViewGroup): RecyclerView.ViewHolder(rootView) {
@@ -46,6 +49,10 @@ class TaskAdapter: RecyclerView.Adapter<TaskAdapter.TaskItemViewHolder>() {
             taskDone.isChecked = item.isDone
         }
 
+    }
+
+    interface Click{
+        fun clickItem(position: Int)
     }
 
 }

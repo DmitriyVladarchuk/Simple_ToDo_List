@@ -8,17 +8,17 @@ import kotlinx.coroutines.launch
 
 class TaskViewModel(val dao: TaskDao): ViewModel() {
 
-    var newTask = ""
+    //var newTask = ""
     val tasks: LiveData<List<Task>> = dao.getAll()
 
-    fun addTask(){
+    fun addTask(newTask: String){
         viewModelScope.launch {
             val task = Task(task = newTask)
             dao.inset(task)
         }
     }
 
-    fun updateTask(position: Int){
+    fun changeStateTask(position: Int){
         val currentTasks = tasks.value ?: return
         val task = currentTasks[position]
         task.isDone = !task.isDone
