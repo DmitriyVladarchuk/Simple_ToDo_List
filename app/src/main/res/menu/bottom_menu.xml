@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/tasksListFragment"
+        android:icon="@drawable/list_48px"
+        android:title="@string/tasks" />
+    <item
+        android:id="@+id/settingFragment"
+        android:icon="@drawable/settings_48px"
+        android:title="@string/setting" />
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/person_48px"
+        android:title="@string/profile" />
+</menu>

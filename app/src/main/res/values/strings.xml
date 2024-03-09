@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">SimpleToDoList</string>
+    <string name="app_name">SimpleToDoList</string>>
+    <string name="hello_fragment">Разраб леньтяй</string>
+    <string name="tasks">Задачи</string>
+    <string name="setting">Настройки</string>
+    <string name="profile">Профиль</string>
 </resources>
