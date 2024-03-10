@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.CheckBox
 import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simpletodolist.R
 import com.example.simpletodolist.models.Task
@@ -12,8 +13,12 @@ class TaskAdapter(val click: Click): RecyclerView.Adapter<TaskAdapter.TaskItemVi
 
     var data = listOf<Task>()
         set(value) {
+            //field = value
+            //notifyDataSetChanged()
+            val diffUtil = TaskDiffUtil(data, value)
+            val diffResults = DiffUtil.calculateDiff(diffUtil)
             field = value
-            notifyDataSetChanged()
+            diffResults.dispatchUpdatesTo(this)
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskItemViewHolder {
