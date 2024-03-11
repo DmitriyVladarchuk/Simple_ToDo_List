@@ -44,7 +44,7 @@ class TasksListFragment : Fragment(), TaskAdapter.Click {
 
         viewModel.tasks.observe(lifecycleOwner, Observer {
             it?.let{
-                adapter.data = it
+                adapter.submitList(it)
             }
         })
 
@@ -73,6 +73,7 @@ class TasksListFragment : Fragment(), TaskAdapter.Click {
         _binding = null
     }
 
+    // Событие нажатия на элемент task
     override fun clickItem(position: Int) {
         viewModel.changeStateTask(position)
     }

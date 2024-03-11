@@ -6,9 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.simpletodolist.DataBase.TaskDao
 import kotlinx.coroutines.launch
 
-class TaskViewModel(val dao: TaskDao): ViewModel() {
+class TaskViewModel(private val dao: TaskDao): ViewModel() {
 
-    //var newTask = ""
     val tasks: LiveData<List<Task>> = dao.getAll()
 
     fun addTask(newTask: String){
