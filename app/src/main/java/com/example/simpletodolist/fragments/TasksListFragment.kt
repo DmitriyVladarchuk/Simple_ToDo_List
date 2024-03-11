@@ -7,9 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.ItemTouchHelper.SimpleCallback
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.simpletodolist.DataBase.TaskDataBase
 import com.example.simpletodolist.R
 import com.example.simpletodolist.databinding.FragmentTasksListBinding
@@ -64,6 +68,35 @@ class TasksListFragment : Fragment(), TaskAdapter.Click {
                 .create()
                 .show()
         }
+
+        // Swipe
+        val swipe = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                AlertDialog.Builder(requireContext())
+                    .setMessage("Вы действительно хотите удалить задачу \"${
+                        viewModel.tasks.value!![viewHolder.adapterPosition].task
+                    }\"?")
+                    .setPositiveButton("Да"){ _, _ ->
+                        viewModel.deleteTask(viewHolder.adapterPosition)
+                    }
+                    .setNegativeButton("Отмена"){ _, _ ->
+                        adapter.notifyItemChanged(viewHolder.adapterPosition)
+                    }
+                    .create()
+                    .show()
+            }
+
+        }
+        val itemTouchHelper = ItemTouchHelper(swipe)
+        itemTouchHelper.attachToRecyclerView(binding.rvTask)
 
         return view
     }

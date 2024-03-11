@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 
 class TaskViewModel(private val dao: TaskDao): ViewModel() {
 
-    val tasks: LiveData<List<Task>> = dao.getAll()
+    var tasks: LiveData<List<Task>> = dao.getAll()
 
     fun addTask(newTask: String){
         viewModelScope.launch {
@@ -23,6 +23,13 @@ class TaskViewModel(private val dao: TaskDao): ViewModel() {
         task.isDone = !task.isDone
         viewModelScope.launch {
             dao.update(task)
+        }
+    }
+
+    fun deleteTask(position: Int){
+        viewModelScope.launch {
+            val task = tasks.value!![position]
+            dao.delete(task)
         }
     }
 
