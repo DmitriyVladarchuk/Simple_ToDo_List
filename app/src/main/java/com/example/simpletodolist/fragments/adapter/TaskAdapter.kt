@@ -19,7 +19,7 @@ class TaskAdapter(private val click: Click): ListAdapter<Task, TaskAdapter.TaskI
         val item = getItem(position)
         holder.bind(item)
         holder.taskDone.setOnClickListener {
-            click.clickItem(position)
+            click.clickItem(holder.adapterPosition)
         }
     }
 

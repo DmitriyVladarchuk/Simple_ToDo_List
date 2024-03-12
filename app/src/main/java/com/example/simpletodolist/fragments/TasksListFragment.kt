@@ -70,7 +70,7 @@ class TasksListFragment : Fragment(), TaskAdapter.Click {
         }
 
         // Swipe
-        val swipe = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT){
+        val swipe = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT){
             override fun onMove(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
@@ -90,6 +90,7 @@ class TasksListFragment : Fragment(), TaskAdapter.Click {
                     .setNegativeButton("Отмена"){ _, _ ->
                         adapter.notifyItemChanged(viewHolder.adapterPosition)
                     }
+                    .setCancelable(false)
                     .create()
                     .show()
             }
