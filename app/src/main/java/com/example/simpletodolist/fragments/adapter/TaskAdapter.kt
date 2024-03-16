@@ -3,6 +3,7 @@ package com.example.simpletodolist.fragments.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.FrameLayout
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -29,7 +30,7 @@ class TaskAdapter(private val click: Click): ListAdapter<Task, TaskAdapter.TaskI
         companion object{
             fun inflateFrom(parent: ViewGroup): TaskItemViewHolder{
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val view = layoutInflater.inflate(R.layout.task_item, parent, false) as CardView
+                val view = layoutInflater.inflate(R.layout.task_item, parent, false) as FrameLayout
                 return TaskItemViewHolder(view)
             }
         }

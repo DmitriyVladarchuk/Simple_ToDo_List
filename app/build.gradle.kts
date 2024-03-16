@@ -42,6 +42,7 @@ android {
 
 dependencies {
 
+    implementation("it.xabaras.android:recyclerview-swipedecorator:1.4")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
